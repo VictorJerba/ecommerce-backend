@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoryModule } from './cases/categories/category.module';
+import { BrandModule } from './cases/brands/brand.module';
 
 @Module({
   imports: [
@@ -7,12 +9,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type: 'postgres',
       host: 'aws-0-sa-east-1.pooler.supabase.com',
       port: +'5432',
-      username: 'postgres.ilibcoosmcfmziizernp',
-      password: 'Ev3rl0ng
-      ;',
+      username: 'postgres.iynwpnyicrsljdrvtvsj',
+      password: 'Bortot123#',
       database: 'postgres',
-      
-    })
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    CategoryModule,
+    BrandModule
   ],
 })
 export class AppModule {}
