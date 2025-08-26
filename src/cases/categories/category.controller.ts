@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
-=======
-import { Controller, Get, Param, ParseUUIDPipe } from "@nestjs/common";
->>>>>>> fa1fbda2a0c29c13ea0f7a773fd733470a91b7f2
 import { Category } from "./category.entity";
 import { CategoryService } from "./category.service";
 
@@ -17,7 +13,6 @@ export class CategoryController {
     }
 
     @Get(':id')
-<<<<<<< HEAD
     async findById(@Param('id', ParseUUIDPipe) id:string): Promise<Category>{
         const found =await this.service.findById(id);
 
@@ -53,18 +48,4 @@ export class CategoryController {
         }
         return this.service.remove(id);
     }   
-=======
-    findById(@Param('id', ParseUUIDPipe) id:string): Promise<Category>{
-        
-    }
-
-    seve(){
-
-    }
-
-    remove(){
-
-    }
-
->>>>>>> fa1fbda2a0c29c13ea0f7a773fd733470a91b7f2
 }
