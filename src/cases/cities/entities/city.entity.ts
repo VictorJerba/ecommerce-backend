@@ -6,14 +6,12 @@ export class City {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ length: 60, nullable: false })
+    @Column({length: 60, nullable: false})
     name: string;
 
-
-    @Column({ length: 7, nullable: false })
+    @Column({length: 7, nullable: false})
     ibge: string;
 
     @ManyToOne(() => State, {eager: false, nullable: false})
     state: State;
-
 }

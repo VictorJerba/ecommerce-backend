@@ -1,11 +1,11 @@
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Injectable } from "@nestjs/common";
-import { Brand } from "./brand.entity";
+import { Customer } from "./customer.entity";
 
 @Injectable()
-export class BrandService {
-    update(id: string, brand: Brand) {
+export class CustomerService {
+    update(id: string, customer: Customer) {
         throw new Error("Method not implemented.");
     }
     delete(id: string) {
@@ -13,20 +13,20 @@ export class BrandService {
     }
 
     constructor(
-        @InjectRepository(Brand)
-        private readonly repository: Repository<Brand>
+        @InjectRepository(Customer)
+        private readonly repository: Repository<Customer>
     ) {}
 
-    findAll(): Promise<Brand[]> {
+    findAll(): Promise<Customer[]> {
         return this.repository.find();
     }
 
-    findById(id: string): Promise<Brand | null> {
+    findById(id: string): Promise<Customer | null> {
         return this.repository.findOneBy({id: id});
     }
 
-    save(brand: Brand): Promise<Brand> {
-        return this.repository.save(brand);
+    save(customer: Customer): Promise<Customer> {
+        return this.repository.save(customer);
     }
 
     async remove(id: string):Promise<void> {

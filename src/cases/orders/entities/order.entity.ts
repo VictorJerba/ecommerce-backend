@@ -1,7 +1,6 @@
 import { Customer } from "src/cases/customers/customer.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { OrderItem } from "./order-item.entity";
-7
 
 enum OrderStatus {
     NEW = 'NEW',
@@ -12,30 +11,31 @@ enum OrderStatus {
     CANCELED = 'CANCELED'
 }
 
-@Entity('order')
+@Entity('orders')
 export class Order {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => Customer, {eager: true, nullable: false})
+    @ManyToOne(() => Customer, {nullable: false, eager: true})
     customer: Customer;
 
-    @Column('decimal', {nullable: true, precision: 10, scale: 2})
+    @Column({type: 'decimal', precision: 10, scale: 2, nullable: true})
     shipping: number;
 
     @Column('enum', {enum: OrderStatus, default: OrderStatus.NEW})
-    status: string;
+    status: string
 
-    @Column('decimal', {nullable: true, precision: 10, scale: 2})
+    @Column({type: 'decimal', precision: 10, scale: 2, nullable: true})
     total: number;
 
-    @OneToMany(() => OrderItem, (item) => item.order, {eager: true,
-        cascade:true})
-        itens: OrderItem[];
+    @OneToMany(() => OrderItem, (item) => item.order, {
+        eager: true, 
+        cascade: true})
+    items: OrderItem[];
 
     @CreateDateColumn()
     createdAt: Date;
 
-    @CreateDateColumn()
+    @UpdateDateColumn()
     updatedAt: Date;
 }
